@@ -2,6 +2,7 @@
 import unittest
 from src.homework.i_dictionaries_sets.dictionary import get_p_distance
 from src.homework.i_dictionaries_sets.dictionary import get_p_distance_matrix
+
 class Test_Config(unittest.TestCase):
     def test_p_distance(self):
         self.assertEqual(.4, get_p_distance(['T','T','T','C','C','A','T','T','T','A'], 
