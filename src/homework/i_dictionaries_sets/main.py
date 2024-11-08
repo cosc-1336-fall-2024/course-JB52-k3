@@ -1,46 +1,35 @@
 #
-import dictionary
+from dictionary import add_inventory, remove_inventory_widget
 
-def menu():
-    print("     MENU     \n1-Get p distance matrix\n2-Exit")
+def inventory_menu():
 
-def display_result(result):
-    
-    for row in result:
-        for item in row:
-            print(str(item).rjust(3, " "), end = " ")
-        print(" ")
+    print("\nInventory Menu")
+    print("1- Add or Update Item")
+    print("2- Delete Item")
+    print("3- Exit")
 
-def get_total_list():
-    
-    num = int(input("How many list will enter? "))
-    index = 0
-    total_list = []
-    
-    while(index < num):
-        input_list = input("please enter a comma-separated list: ")
-        s_list = input_list.split(",")
-        s_list = [value.strip() for value in s_list]
-        total_list.append(s_list)
-        index += 1
-    return total_list
+def main():
+    inventory = {}
 
-def run_menu():
-    
-    option = 0
-    
-    while option != 2:
-        menu()
-        option = int(input("Please enter selection 1 or 2: "))
-        result = []
+    while True:
+        inventory_menu()
+        choice = input("Enter your selection: ")
+
+        if choice == '1':
+            item = input("Enter item name: ")
+            quantity = int(input("Enter quantity: "))
+            add_inventory(inventory, item, quantity)
+            print(f"Inventory updated: {inventory}")
         
-        if option == 1:
-            result1 = get_total_list()
-            result = dictionary.get_p_distance_matrix(result1)
-            display_result(result)
-        elif option == 2:
-            exit()
+        elif choice == '2':
+            item = input("Enter item name for deletion: ")
+            remove_inventory_widget(inventory, item)
+            print(f"Inventory after deletion: {inventory}")
+        
+        elif choice == '3':
+            print("Exiting program.")
+            break
+        
         else:
-            print("INVALID\nPlease select 1 or 2" )
-
-run_menu()
+            print("Invalid choice, please try again.")
+main()
